@@ -1,4 +1,4 @@
-# RTSM case: Dose finding
+# Read me: Dose finding
 
 ## Case
 This is an example of a blinded study using logistics in which subjects are randomized to either “active” or “placebo” and were the subject can change kit type during the study. Subjects can at events after the first one change the dose of the treatment. At visit 1 the subject starts at dose 1, at visit 2 the subject can either stay on the same dose or step up to dose 2, at visit 3 the subject can stay on the same dose, step down to dose 1 or step up to dose 3. The example here is based on that there are distinct boxes at the site with kits for the different doses. For example the box for dose 1 contains both “active” and “placebo” kits only used for dose 1. This means that there are 3 different kinds of placebo kits and 3 kinds of active kits. And a total of 6 treatments/kit types. 
