@@ -1,4 +1,4 @@
-# RTMS case: Cross-over
+# Read me: Cross-over
 
 ## Case
 This is an example of a blinded study using logistics that has a cross-over design. The subjects are randomized to either “active” or “placebo” for the first period, and then the other for the second period. 
