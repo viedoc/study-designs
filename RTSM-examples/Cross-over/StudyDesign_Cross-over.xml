@@ -1,0 +1,499 @@
+<?xml version="1.0"?>
+<ODM xmlns:sdm="http://www.cdisc.org/ns/studydesign/v1.0" xmlns:v4="http://www.viedoc.net/ns/v4" SourceSystemVersion="4.84.9207.29225" SourceSystem="VIEDOC" Originator="Viedoc Technologies AB" ODMVersion="1.3" AsOfDateTime="2025-06-26T11:28:04.211Z" FileOID="StudyDesign_Cross-over_v1.01.xml" CreationDateTime="2025-06-26T11:28:04.196Z" v4:ModifiedSystemVersion="4.86" Granularity="Metadata" FileType="Snapshot" Description="Cross-over" xmlns="http://www.cdisc.org/ns/odm/v1.3">
+  <Study OID="22b3f972-cf98-4a65-a838-b7890a9bbd1b">
+    <GlobalVariables>
+      <StudyName>Simple cross-over</StudyName>
+      <StudyDescription>An example of how to implement a cross-over randomization.</StudyDescription>
+      <ProtocolName>ABC123</ProtocolName>
+      <v4:PatientCardItem FormOID="DM" ItemOID="SEX">
+        <v4:CardAvatar AvatarClass="male" Value="1" />
+        <v4:CardAvatar AvatarClass="female" Value="2" />Gender</v4:PatientCardItem>
+      <v4:SubjectIdGenerator Format="{CountryCode}-{SiteCode}-{SiteSubjectSeqNo:000}" />
+      <v4:ELearningDef OID="EL_SUT" Handle="https://help.viedoc.net/c/94d6f0">
+        <v4:Title>Viedoc User Guide for Site Users</v4:Title>
+        <v4:Description>Text based eLearning for site staff.</v4:Description>
+      </v4:ELearningDef>
+      <v4:ELearningDef OID="EL_MTP" Handle="https://help.viedoc.net/c/c63e06">
+        <v4:Title>Viedoc User Guide for Monitors</v4:Title>
+        <v4:Description>Text based eLearning for monitors.</v4:Description>
+      </v4:ELearningDef>
+      <v4:ELearningDef OID="EL_GDM" Handle="https://help.viedoc.net/c/1994d8">
+        <v4:Title>Viedoc User Guide for Data Managers</v4:Title>
+        <v4:Description>Text based eLearning for Data Managers.</v4:Description>
+      </v4:ELearningDef>
+      <v4:ELearningDef OID="EL_GPM" Handle="https://help.viedoc.net/c/04361f">
+        <v4:Title>Viedoc User Guide for Project Managers</v4:Title>
+        <v4:Description>Text based eLearning for Project Managers.</v4:Description>
+      </v4:ELearningDef>
+      <v4:ELearningDef OID="EL_GMC" Handle="https://help.viedoc.net/c/3108de">
+        <v4:Title>Viedoc User Guide for Medical Coders</v4:Title>
+        <v4:Description>Text based eLearning for Medical Coders.</v4:Description>
+      </v4:ELearningDef>
+      <v4:ELearningDef OID="EL_GSM" Handle="https://help.viedoc.net/c/4a40d5">
+        <v4:Title>Viedoc User Guide for Supply Managers</v4:Title>
+        <v4:Description>Text based eLearning for Supply Managers using Viedoc Logistics.</v4:Description>
+      </v4:ELearningDef>
+      <v4:ExternalDataDef OID="ED_Randomization" Name="Randomization" Label="Randomize" StudyEventOID="E01_V1" ActivityOID="V1_RAND" FormOID="RAND">
+        <v4:Description>
+          <TranslatedText xml:lang="en" />
+        </v4:Description>
+        <v4:OutputItemRef ItemOID="RANDID" Mandatory="No" />
+        <v4:BlindedOutputItemRef ItemOID="ARMCD" Mandatory="No" />
+        <v4:BlindedOutputItemRef ItemOID="ARM2CD" Mandatory="No" />
+      </v4:ExternalDataDef>
+      <v4:AllocationDef Enabled="true" Label="Allocate" OID="AD_Randomization">
+        <v4:ExternalDataRef ExternalDataDefOID="ED_Randomization" />
+        <v4:AllocationListDef>
+          <v4:AllocationListItemDef OID="DTRT" Name="Treatment" InputOrOutput="Input" />
+          <v4:AllocationListItemDef OID="DKITNO" Name="Kit number" InputOrOutput="Output" />
+          <v4:AllocationListItemDef OID="DEXPDAT" Name="Expiry date" InputOrOutput="Output" />
+        </v4:AllocationListDef>
+        <v4:AllocationContextDef OID="c3bf2a30-e56b-47de-a1fc-71d94d856342" Enabled="true" Name="Allocation period 1" ReplaceEnabled="true" UndoEnabled="true" StudyEventOID="E01_V1" ActivityOID="V1_KIT" FormOID="KIT">
+          <v4:AllocationListItemMapping AllocationListItemOID="DTRT" ItemOID="ARMCD" ExternalDataDefOID="ED_Randomization" />
+          <v4:AllocationListItemMapping AllocationListItemOID="DKITNO" ItemOID="KITNO" />
+          <v4:AllocationListItemMapping AllocationListItemOID="DEXPDAT" ItemOID="KITEXPDAT" />
+        </v4:AllocationContextDef>
+        <v4:AllocationContextDef OID="4dc8506b-582c-4bcd-94e3-20b9b8830f7f" Enabled="true" Name="Allocation period 2" ReplaceEnabled="true" UndoEnabled="true" StudyEventOID="E02_V2" ActivityOID="V2_KIT" FormOID="KIT">
+          <v4:AllocationListItemMapping AllocationListItemOID="DTRT" ItemOID="ARM2CD" ExternalDataDefOID="ED_Randomization" />
+          <v4:AllocationListItemMapping AllocationListItemOID="DKITNO" ItemOID="KITNO" />
+          <v4:AllocationListItemMapping AllocationListItemOID="DEXPDAT" ItemOID="KITEXPDAT" />
+        </v4:AllocationContextDef>
+      </v4:AllocationDef>
+      <v4:SponsorCode />
+    </GlobalVariables>
+    <BasicDefinitions />
+    <MetaDataVersion OID="3.0" Name="v1.01" Description="Cross-over">
+      <Protocol v4:LastSavedDateTime="2025-06-11T11:41:41.049Z">
+        <Description>
+          <TranslatedText xml:lang="en">ABC123</TranslatedText>
+        </Description>
+        <StudyEventRef StudyEventOID="E00_DM" OrderNumber="0" Mandatory="No" />
+        <StudyEventRef StudyEventOID="E01_V1" OrderNumber="1" Mandatory="No" />
+        <StudyEventRef StudyEventOID="E02_V2" OrderNumber="2" Mandatory="No" CollectionExceptionConditionOID="COND__V_E02_V2" />
+        <sdm:Summary>
+          <Description />
+        </sdm:Summary>
+        <sdm:Structure>
+          <sdm:ActivityDef OID="ACT_E00_DM_START" v4:StartMethodOID="MD_START_ACT_E00_DM_START" v4:ExcludeDateForm="true" />
+          <sdm:ActivityDef OID="DM_DM" Name="">
+            <FormRef FormOID="DM" OrderNumber="0" Mandatory="No" />
+          </sdm:ActivityDef>
+          <sdm:ActivityDef OID="ACT_E01_V1_START" />
+          <sdm:ActivityDef OID="V1_RAND" Name="">
+            <FormRef FormOID="RAND" OrderNumber="0" Mandatory="No" />
+          </sdm:ActivityDef>
+          <sdm:ActivityDef OID="V1_KIT" Name="">
+            <FormRef FormOID="KIT" OrderNumber="0" Mandatory="No" />
+          </sdm:ActivityDef>
+          <sdm:ActivityDef OID="ACT_E02_V2_START" />
+          <sdm:ActivityDef OID="V2_KIT" Name="">
+            <FormRef FormOID="KIT" OrderNumber="0" Mandatory="No" />
+          </sdm:ActivityDef>
+        </sdm:Structure>
+        <sdm:Workflow>
+          <sdm:StudyStart>
+            <Description />
+            <sdm:ActivityRef ActivityOID="DM_DM" />
+          </sdm:StudyStart>
+          <sdm:StudyFinish>
+            <sdm:ActivityRef />
+          </sdm:StudyFinish>
+          <sdm:PathCanFinish>
+            <Description />
+          </sdm:PathCanFinish>
+          <sdm:EntryExitCriteria OID="EEC_V1_KIT" StructuralElementType="Activity" StructuralElementOID="V1_KIT">
+            <sdm:EntryCriteria>
+              <sdm:Criterion OID="ECV_V1_KIT" ConditionOID="COND__A_V1_KIT" />
+            </sdm:EntryCriteria>
+          </sdm:EntryExitCriteria>
+        </sdm:Workflow>
+        <sdm:Timing />
+      </Protocol>
+      <StudyEventDef OID="E00_DM" Name="Demographics" Repeating="No" Type="Scheduled" Category="AddEvent">
+        <FormRef FormOID="DM" OrderNumber="0" Mandatory="No" />
+        <FormRef FormOID="$EVENT" OrderNumber="1" Mandatory="No" />
+        <sdm:ActivityRef ActivityOID="ACT_E00_DM_START" OrderNumber="0" />
+        <sdm:ActivityRef ActivityOID="DM_DM" OrderNumber="1" />
+      </StudyEventDef>
+      <StudyEventDef OID="E01_V1" Name="Visit 1 (Period 1)" Repeating="No" Type="Scheduled">
+        <FormRef FormOID="RAND" OrderNumber="0" Mandatory="No" />
+        <FormRef FormOID="KIT" OrderNumber="1" Mandatory="No" />
+        <FormRef FormOID="$EVENT" OrderNumber="2" Mandatory="No" />
+        <sdm:ActivityRef ActivityOID="ACT_E01_V1_START" OrderNumber="0" />
+        <sdm:ActivityRef ActivityOID="V1_RAND" OrderNumber="1" />
+        <sdm:ActivityRef ActivityOID="V1_KIT" OrderNumber="2" />
+      </StudyEventDef>
+      <StudyEventDef OID="E02_V2" Name="Visit 2 (Period 2)" Repeating="No" Type="Scheduled">
+        <FormRef FormOID="KIT" OrderNumber="0" Mandatory="No" />
+        <FormRef FormOID="$EVENT" OrderNumber="1" Mandatory="No" />
+        <sdm:ActivityRef ActivityOID="ACT_E02_V2_START" OrderNumber="0" />
+        <sdm:ActivityRef ActivityOID="V2_KIT" OrderNumber="1" />
+      </StudyEventDef>
+      <FormDef v4:ConditionOID="CD_FD_DM" v4:RoleHideShow="show" v4:LastModified="2025-04-28T09:22:47.313Z" v4:Created="2025-04-28T09:22:39.519Z" Repeating="No" Name="Demographics " OID="DM">
+        <ItemGroupRef ItemGroupOID="DMG1" OrderNumber="0" Mandatory="No" v4:RoleHideShow="show">
+          <v4:Layout Width="full" Spacing="wide" DisplayThumbnail="none" />
+        </ItemGroupRef>
+      </FormDef>
+      <FormDef v4:RoleHideShow="show" v4:LastModified="2025-06-04T11:26:36.151Z" v4:Created="2025-04-28T09:40:15.203Z" Repeating="No" Name="Kit Allocation" OID="KIT" v4:Sdv="None">
+        <Description>
+          <TranslatedText xml:lang="en">Click 'Allocate' button to allocate a kit to the subject.</TranslatedText>
+        </Description>
+        <ItemGroupRef ItemGroupOID="KITG2" OrderNumber="0" Mandatory="No" v4:RoleHideShow="show">
+          <v4:Layout Width="full" Spacing="wide" DisplayThumbnail="none" />
+        </ItemGroupRef>
+      </FormDef>
+      <FormDef v4:ConditionOID="CD_FD_RAND" v4:RoleHideShow="show" v4:LastModified="2025-06-12T13:14:54.143Z" v4:Created="2025-04-28T09:22:54.426Z" Repeating="No" Name="Randomization" OID="RAND">
+        <Description>
+          <TranslatedText xml:lang="en">Click on the "Randomize" button to randomize the subject.</TranslatedText>
+        </Description>
+        <ItemGroupRef ItemGroupOID="RANDG1" OrderNumber="0" Mandatory="No" v4:RoleHideShow="show">
+          <v4:Layout Width="full" Spacing="wide" DisplayThumbnail="none" />
+        </ItemGroupRef>
+      </FormDef>
+      <FormDef v4:LastModified="2025-06-26T11:28:04.211Z" v4:Created="2025-06-26T11:28:04.211Z" Repeating="No" Name="$EVENT" OID="$EVENT">
+        <ItemGroupRef ItemGroupOID="EventDateGroup" OrderNumber="0" Mandatory="No" />
+      </FormDef>
+      <ItemGroupDef OID="DMG1" Name="DMG1" Repeating="No">
+        <ItemRef ItemOID="SEX" OrderNumber="0" Mandatory="Yes" v4:RoleHideShow="show">
+          <v4:Layout Orientation="horizontal" LabelPosition="top" DisplayThumbnail="none" />
+        </ItemRef>
+        <ItemRef ItemOID="RFICDAT" OrderNumber="1" Mandatory="Yes" v4:RoleHideShow="show">
+          <v4:Layout Orientation="horizontal" LabelPosition="top" DisplayThumbnail="none" />
+        </ItemRef>
+        <v4:Layout Width="full" Spacing="wide" DisplayThumbnail="none" />
+      </ItemGroupDef>
+      <ItemGroupDef OID="KITG2" Name="KITG2" Repeating="No">
+        <ItemRef ItemOID="KITNO" OrderNumber="0" Mandatory="No" CollectionExceptionConditionOID="COND_KITNO_KIT" v4:RoleHideShow="show">
+          <v4:Layout Width="220" LabelWidth="109" InputWidth="150" Orientation="horizontal" LabelPosition="top" DisplayThumbnail="none" />
+        </ItemRef>
+        <ItemRef ItemOID="KITEXPDAT" OrderNumber="1" Mandatory="No" CollectionExceptionConditionOID="COND_KITEXPDAT_KIT" v4:RoleHideShow="show">
+          <v4:Layout Width="230" LabelWidth="165" Orientation="horizontal" LabelPosition="top" DisplayThumbnail="none" />
+        </ItemRef>
+        <v4:Layout Width="full" Spacing="wide" DisplayThumbnail="none" />
+      </ItemGroupDef>
+      <ItemGroupDef OID="RANDG1" Name="RANDG1" Repeating="No">
+        <ItemRef ItemOID="RANDDAT" MethodOID="MD_RANDDAT_RAND" OrderNumber="0" Mandatory="Yes" v4:RoleHideShow="show">
+          <v4:Layout Orientation="horizontal" LabelPosition="top" />
+        </ItemRef>
+        <ItemRef ItemOID="RANDID" OrderNumber="1" Mandatory="Yes" CollectionExceptionConditionOID="COND_RANDID_RAND" v4:RoleHideShow="show">
+          <v4:Layout Width="412.89099999999996" InputWidth="163.89099999999996" Orientation="horizontal" LabelPosition="top" DisplayThumbnail="none" />
+        </ItemRef>
+        <ItemRef ItemOID="RAND1" OrderNumber="2" Mandatory="Yes" v4:RoleHideShow="show">
+          <v4:Layout Width="764.8281" Orientation="horizontal" LabelPosition="top" />
+        </ItemRef>
+        <ItemRef ItemOID="ARMCD" OrderNumber="3" Mandatory="Yes" CollectionExceptionConditionOID="COND_ARMCD_RAND" v4:RoleHideShow="show">
+          <v4:Layout Orientation="horizontal" LabelPosition="top" DisplayThumbnail="none" />
+        </ItemRef>
+        <ItemRef ItemOID="ARM2CD" OrderNumber="4" Mandatory="Yes" CollectionExceptionConditionOID="COND_ARM2CD_RAND" v4:RoleHideShow="show">
+          <v4:Layout Width="181.875" LabelWidth="173.875" Orientation="horizontal" LabelPosition="top" DisplayThumbnail="none" />
+        </ItemRef>
+        <v4:Layout Width="full" Spacing="wide" DisplayThumbnail="none" />
+      </ItemGroupDef>
+      <ItemGroupDef OID="EventDateGroup" Name="EventDateGroup" Repeating="No" SASDatasetName="EVDT">
+        <ItemRef ItemOID="EventProposedDate" OrderNumber="0" Mandatory="No" />
+        <ItemRef ItemOID="EventPlannedDate" OrderNumber="1" Mandatory="No" />
+        <ItemRef ItemOID="EventWindowStartDate" OrderNumber="2" Mandatory="No" />
+        <ItemRef ItemOID="EventWindowEndDate" OrderNumber="3" Mandatory="No" />
+        <ItemRef ItemOID="EventDate" OrderNumber="4" Mandatory="No" />
+      </ItemGroupDef>
+      <ItemDef v4:MinLength="1" v4:HtmlType="radio" Length="12" DataType="integer" Name="SEX" OID="SEX">
+        <Question>
+          <TranslatedText xml:lang="en">Gender</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="CL_SEX" />
+      </ItemDef>
+      <ItemDef v4:MinLength="1" Length="10" v4:MaxValue="Today" DataType="partialDate" Name="RFICDAT" OID="RFICDAT">
+        <Question>
+          <TranslatedText xml:lang="en">Date of informed consent</TranslatedText>
+        </Question>
+      </ItemDef>
+      <ItemDef v4:MinLength="1" Length="65536" DataType="text" Name="KITNO" OID="KITNO" v4:Sdv="None">
+        <Question>
+          <TranslatedText xml:lang="en">Kit number</TranslatedText>
+        </Question>
+      </ItemDef>
+      <ItemDef v4:MinLength="1" Length="10" DataType="partialDate" Name="KITEXPDAT" OID="KITEXPDAT" v4:Sdv="None">
+        <Question>
+          <TranslatedText xml:lang="en">Expiry date</TranslatedText>
+        </Question>
+      </ItemDef>
+      <ItemDef v4:MinLength="1" Length="10" DataType="partialDate" Name="RANDDAT" OID="RANDDAT">
+        <Question>
+          <TranslatedText xml:lang="en">Date of randomization</TranslatedText>
+        </Question>
+      </ItemDef>
+      <ItemDef v4:MinLength="1" Length="65536" DataType="text" Name="RANDID" OID="RANDID">
+        <Question>
+          <TranslatedText xml:lang="en">Randomization number</TranslatedText>
+        </Question>
+      </ItemDef>
+      <ItemDef v4:MinLength="1" v4:HtmlType="statictext" Length="65536" DataType="string" Name="RAND1" OID="RAND1">
+        <Question>
+          <TranslatedText xml:lang="en" />
+        </Question>
+      </ItemDef>
+      <ItemDef v4:MinLength="1" v4:HtmlType="radio" Length="12" DataType="integer" Name="ARMCD" OID="ARMCD">
+        <Question>
+          <TranslatedText xml:lang="en">Treatment - Period 1</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="CL_ARMCD" />
+      </ItemDef>
+      <ItemDef v4:MinLength="1" v4:HtmlType="radio" Length="12" DataType="integer" Name="ARM2CD" OID="ARM2CD">
+        <Question>
+          <TranslatedText xml:lang="en">Treatment - Period 2</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="CL_ARM2CD" />
+      </ItemDef>
+      <ItemDef Length="16" SASFieldName="PLDATE" DataType="partialDatetime" Name="EventPlannedDate" OID="EventPlannedDate">
+        <Question>
+          <TranslatedText xml:lang="en">Event planned date</TranslatedText>
+        </Question>
+      </ItemDef>
+      <ItemDef Length="16" SASFieldName="PRDATE" DataType="partialDatetime" Name="EventProposedDate" OID="EventProposedDate">
+        <Question>
+          <TranslatedText xml:lang="en">Event proposed date</TranslatedText>
+        </Question>
+      </ItemDef>
+      <ItemDef Length="16" SASFieldName="WSTDATE" DataType="partialDatetime" Name="EventWindowStartDate" OID="EventWindowStartDate">
+        <Question>
+          <TranslatedText xml:lang="en">Event window start date</TranslatedText>
+        </Question>
+      </ItemDef>
+      <ItemDef Length="16" SASFieldName="WENDATE" DataType="partialDatetime" Name="EventWindowEndDate" OID="EventWindowEndDate">
+        <Question>
+          <TranslatedText xml:lang="en">Event window end date</TranslatedText>
+        </Question>
+      </ItemDef>
+      <ItemDef Length="16" SASFieldName="EVDATE" DataType="partialDatetime" Name="EventDate" OID="EventDate">
+        <Question>
+          <TranslatedText xml:lang="en">Event date</TranslatedText>
+        </Question>
+      </ItemDef>
+      <CodeList OID="CL_SEX" Name="CL_SEX" DataType="integer">
+        <CodeListItem CodedValue="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Male</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Female</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="CL_ARMCD" Name="CL_ARMCD" DataType="integer">
+        <CodeListItem CodedValue="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Active</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Placebo</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="CL_ARM2CD" Name="CL_ARM2CD" DataType="integer">
+        <CodeListItem CodedValue="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Active</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Placebo</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <ConditionDef OID="CD_FD_DM" Name="CD_FD_DM">
+        <Description>
+          <TranslatedText xml:lang="en"> </TranslatedText>
+        </Description>
+        <FormalExpression Context="EditRoles">R1,R2</FormalExpression>
+      </ConditionDef>
+      <ConditionDef OID="COND_KITNO_KIT" Name="COND_KITNO_KIT" v4:HideShow="show">
+        <Description>
+          <TranslatedText xml:lang="en"> </TranslatedText>
+        </Description>
+        <FormalExpression Context="js">KITNO != null</FormalExpression>
+      </ConditionDef>
+      <ConditionDef OID="COND_KITEXPDAT_KIT" Name="COND_KITEXPDAT_KIT" v4:HideShow="show">
+        <Description>
+          <TranslatedText xml:lang="en"> </TranslatedText>
+        </Description>
+        <FormalExpression Context="js">KITEXPDAT != null</FormalExpression>
+      </ConditionDef>
+      <ConditionDef OID="COND__A_V1_KIT" Name="COND__A_V1_KIT" v4:HideShow="show">
+        <Description>
+          <TranslatedText xml:lang="en"> </TranslatedText>
+        </Description>
+        <FormalExpression Context="js">E01_V1.RAND.RANDID != null
+</FormalExpression>
+      </ConditionDef>
+      <ConditionDef OID="COND__V_E02_V2" Name="COND__V_E02_V2" v4:HideShow="show">
+        <Description>
+          <TranslatedText xml:lang="en"> </TranslatedText>
+        </Description>
+        <FormalExpression Context="js">E01_V1.KIT.KITNO != null
+</FormalExpression>
+      </ConditionDef>
+      <ConditionDef OID="COND_RANDID_RAND" Name="COND_RANDID_RAND" v4:HideShow="show">
+        <Description>
+          <TranslatedText xml:lang="en"> </TranslatedText>
+        </Description>
+        <FormalExpression Context="js">RANDID != null</FormalExpression>
+      </ConditionDef>
+      <ConditionDef OID="COND_ARMCD_RAND" Name="COND_ARMCD_RAND" v4:HideShow="show">
+        <Description>
+          <TranslatedText xml:lang="en"> </TranslatedText>
+        </Description>
+        <FormalExpression Context="js">ARMCD != null</FormalExpression>
+      </ConditionDef>
+      <ConditionDef OID="COND_ARM2CD_RAND" Name="COND_ARM2CD_RAND" v4:HideShow="show">
+        <Description>
+          <TranslatedText xml:lang="en"> </TranslatedText>
+        </Description>
+        <FormalExpression Context="js">ARM2CD != null</FormalExpression>
+      </ConditionDef>
+      <ConditionDef OID="CD_FD_RAND" Name="CD_FD_RAND">
+        <Description>
+          <TranslatedText xml:lang="en"> </TranslatedText>
+        </Description>
+        <FormalExpression Context="EditRoles">R1,R2</FormalExpression>
+      </ConditionDef>
+      <MethodDef OID="MD_START_ACT_E00_DM_START" Name="MD_START_ACT_E00_DM_START">
+        <Description>
+          <TranslatedText xml:lang="en"> </TranslatedText>
+        </Description>
+        <FormalExpression Context="first-data-entry" />
+      </MethodDef>
+      <MethodDef OID="MD_RANDDAT_RAND" Name="MD_RANDDAT_RAND">
+        <Description>
+          <TranslatedText xml:lang="en"> </TranslatedText>
+        </Description>
+        <FormalExpression Context="js">return today();</FormalExpression>
+      </MethodDef>
+      <v4:RolesDef OID="R1" RoleName="Investigator" Avatar="1" Enabled="true">
+        <v4:Permission>ExportReport</v4:Permission>
+        <v4:Permission>ViewRoles</v4:Permission>
+        <v4:Permission>EditForm</v4:Permission>
+        <v4:Permission>ResetForm</v4:Permission>
+        <v4:Permission>DeleteSubjects</v4:Permission>
+        <v4:Permission>SignForm</v4:Permission>
+        <v4:Permission>EmergencyUnblinding</v4:Permission>
+        <v4:Permission>AnonymizeData</v4:Permission>
+        <v4:Permission>AddForm</v4:Permission>
+        <v4:Permission>AddPatient</v4:Permission>
+        <v4:Permission>EditEventSchedule</v4:Permission>
+        <v4:Permission>ScheduleEvent</v4:Permission>
+        <v4:Permission>SignEvent</v4:Permission>
+        <v4:Description>
+          <TranslatedText xml:lang="en">Save, sign, reset, delete and export data, resolve queries</TranslatedText>
+        </v4:Description>
+        <v4:ELearningRef ELearningOID="EL_SUT" />
+      </v4:RolesDef>
+      <v4:RolesDef OID="R2" RoleName="Study Coordinator" Avatar="4" Enabled="true">
+        <v4:Permission>AddForm</v4:Permission>
+        <v4:Permission>ResetForm</v4:Permission>
+        <v4:Permission>AddPatient</v4:Permission>
+        <v4:Permission>EditForm</v4:Permission>
+        <v4:Permission>ScheduleEvent</v4:Permission>
+        <v4:Permission>EditEventSchedule</v4:Permission>
+        <v4:Permission>ExportReport</v4:Permission>
+        <v4:Permission>DeleteSubjects</v4:Permission>
+        <v4:Permission>ViewRoles</v4:Permission>
+        <v4:Description>
+          <TranslatedText xml:lang="en">Save, reset, delete and export data, resolve queries</TranslatedText>
+        </v4:Description>
+        <v4:ELearningRef ELearningOID="EL_SUT" />
+      </v4:RolesDef>
+      <v4:RolesDef OID="R3" RoleName="Monitor" Avatar="5" Enabled="true">
+        <v4:Permission>QueryRaise</v4:Permission>
+        <v4:Permission>PreQueryPromote</v4:Permission>
+        <v4:Permission>SDV</v4:Permission>
+        <v4:Permission>LockData</v4:Permission>
+        <v4:Permission>ClinicalReview</v4:Permission>
+        <v4:Permission>ExportReport</v4:Permission>
+        <v4:Permission>ViewMetrics</v4:Permission>
+        <v4:Permission>ViewReports</v4:Permission>
+        <v4:Permission>CreatePrivateNotes</v4:Permission>
+        <v4:Permission>ViewRoles</v4:Permission>
+        <v4:Description>
+          <TranslatedText xml:lang="en">Clinical review, SDV, lock and export data, add queries, promote pre-queries</TranslatedText>
+        </v4:Description>
+        <v4:ELearningRef ELearningOID="EL_MTP" />
+      </v4:RolesDef>
+      <v4:RolesDef OID="R4" RoleName="Project Manager" Avatar="6" Enabled="true">
+        <v4:Permission>ReadOnlyData</v4:Permission>
+        <v4:Permission>ExportReport</v4:Permission>
+        <v4:Permission>ViewMetrics</v4:Permission>
+        <v4:Permission>ViewReports</v4:Permission>
+        <v4:Permission>CreatePrivateNotes</v4:Permission>
+        <v4:Permission>ViewRoles</v4:Permission>
+        <v4:Description>
+          <TranslatedText xml:lang="en">Read-only, export data</TranslatedText>
+        </v4:Description>
+        <v4:ELearningRef ELearningOID="EL_GPM" />
+      </v4:RolesDef>
+      <v4:RolesDef OID="R5" RoleName="Data Manager" Avatar="8" Enabled="true">
+        <v4:Permission>PreQueryRaise</v4:Permission>
+        <v4:Permission>ExportReport</v4:Permission>
+        <v4:Permission>DataReview</v4:Permission>
+        <v4:Permission>ViewMetrics</v4:Permission>
+        <v4:Permission>ViewReports</v4:Permission>
+        <v4:Permission>CreatePrivateNotes</v4:Permission>
+        <v4:Permission>ViewRoles</v4:Permission>
+        <v4:Description>
+          <TranslatedText xml:lang="en">Data review, export data, add pre-queries</TranslatedText>
+        </v4:Description>
+        <v4:ELearningRef ELearningOID="EL_GDM" />
+      </v4:RolesDef>
+      <v4:RolesDef OID="R6" RoleName="Medical Coder" Avatar="8" Enabled="true">
+        <v4:Permission>ReadOnlyData</v4:Permission>
+        <v4:Permission>ExportReport</v4:Permission>
+        <v4:Permission>QueryRaise</v4:Permission>
+        <v4:Permission>ViewMedicalCoding</v4:Permission>
+        <v4:Permission>PerformMedicalCoding</v4:Permission>
+        <v4:Permission>ApproveMedicalCoding</v4:Permission>
+        <v4:Permission>ViewRoles</v4:Permission>
+        <v4:Description>
+          <TranslatedText xml:lang="en">Read-only, export data, medical coding</TranslatedText>
+        </v4:Description>
+        <v4:ELearningRef ELearningOID="EL_GMC" />
+      </v4:RolesDef>
+      <v4:RolesDef OID="R7" RoleName="Study Supply Manager" Avatar="6" Enabled="true">
+        <v4:Permission>LogisticsViewStudy</v4:Permission>
+        <v4:Permission>LogisticsManageStudy</v4:Permission>
+        <v4:Permission>LogisticsViewBlindedInfo</v4:Permission>
+        <v4:Permission>ViewRoles</v4:Permission>
+        <v4:Description>
+          <TranslatedText xml:lang="en">Responsible for the logistics of Investigational Product on a study level</TranslatedText>
+        </v4:Description>
+        <v4:ELearningRef ELearningOID="EL_SUT" />
+        <v4:ELearningRef ELearningOID="EL_GSM" />
+      </v4:RolesDef>
+      <v4:RolesDef OID="R8" RoleName="Site Supply Manager" Avatar="6" Enabled="true">
+        <v4:Permission>LogisticsViewSite</v4:Permission>
+        <v4:Permission>LogisticsManageSite</v4:Permission>
+        <v4:Permission>LogisticsViewSubjectId</v4:Permission>
+        <v4:Permission>ViewRoles</v4:Permission>
+        <v4:Description>
+          <TranslatedText xml:lang="en">Manage the Investigational Product on a site level</TranslatedText>
+        </v4:Description>
+        <v4:ELearningRef ELearningOID="EL_SUT" />
+        <v4:ELearningRef ELearningOID="EL_GSM" />
+      </v4:RolesDef>
+      <v4:RolesDef OID="R9" RoleName="Regulatory Inspector" Avatar="5" Enabled="true">
+        <v4:Permission>ReadOnlyData</v4:Permission>
+        <v4:Permission>ViewAnonymizedData</v4:Permission>
+        <v4:Permission>ViewRoles</v4:Permission>
+        <v4:Description>
+          <TranslatedText xml:lang="en" />
+        </v4:Description>
+      </v4:RolesDef>
+      <v4:DesignSettings LastValidated="2025-06-12T13:17:53.408Z">
+        <v4:SourceDataVerificationSettings Scope="All" />
+      </v4:DesignSettings>
+    </MetaDataVersion>
+  </Study>
+</ODM>
