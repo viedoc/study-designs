@@ -1,2 +1,2 @@
 # study-designs
-Contains study design ODM examples and supporting files.
+This repository contains study design ODM examples, RTSM examples, and supporting files.
