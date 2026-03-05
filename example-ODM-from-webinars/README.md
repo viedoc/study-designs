@@ -10,4 +10,4 @@ The ODM file in this repo is an XML-formatted representation of a study design t
 
 ## Resources
 
-- See the <a href="https://help.viedoc.net/l/6c61f9/en/" target="_blank" rel="noopener noreferrer">Viedoc Learning Repeating Items Groups Webinar Q&A</a> for a recording of the webinar and extensive Q&A.
+- See the <a href="https://help.viedoc.net/l/6c61f9/en/" target="_blank" rel="noopener noreferrer">Viedoc Repeating Items Groups Webinar Q&A</a> for a recording of the webinar and extensive Q&A.
